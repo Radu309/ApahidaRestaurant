@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Apahida.Models.Food>
+
+@{
+    ViewData["Title"] = "Create";
+}
+<body>
+
+<h1>Create</h1>
+
+<h4>Order</h4>
+<hr />
+@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post" asp-action="Create">
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var food in Model)
+                                {
+                                    <tr>
+
+                                        <td>@food.Name</td>
+                                        <td>@food.Price</td>
+                                        <td>@food.Stock</td>
+                                        <td>
+                                            <input type="number"
+                                                   name="foodQuantities"
+                                                   value="0"
+                                                   min="0"
+                                                   data-price="@food.Price"
+                                                   onchange="updateTotalPrice()">
+                                            <input type="hidden"
+                                                   name="foodList"
+                                                   value="@Json.Serialize(Model)">
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+
+        </div>
+    }
+</body>

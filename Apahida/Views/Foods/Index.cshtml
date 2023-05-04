@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Apahida.Models.Food>
+
+@{
+    ViewData["Title"] = "Foods";
+}
+<head>
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Index</h1>
+<p>
+    <a asp-action="Create">Create New Food</a>
+    <a asp-action="CreateEmployee">Create Employee Account</a>
+</p>
+    <p>
+        <a asp-action="RaportOrder">Create Raport Orders</a>
+        <a asp-action="RaportFood">Create Raport Top Foods</a>
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+    <tbody>
+            <tr>
+                <td>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate">
+                </td>
+                <td>
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" name="endDate">
+                </td>
+                <td colspan="2"></td>
+            </tr>
+
+    </tbody>
+
+</table>
+</body>
